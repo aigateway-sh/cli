@@ -1,0 +1,43 @@
+{
+  "name": "aigateway-cli",
+  "version": "0.1.2",
+  "description": "Command-line tool for AIgateway — one API, every model. Installs the `aig` binary.",
+  "homepage": "https://aigateway.sh",
+  "bugs": {
+    "url": "https://github.com/aigateway-sh/cli/issues",
+    "email": "support@aigateway.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aigateway-sh/cli.git"
+  },
+  "bin": {
+    "aig": "./bin/aig.mjs"
+  },
+  "type": "module",
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "@types/node": "^22.0.0"
+  },
+  "keywords": [
+    "ai",
+    "aigateway",
+    "llm",
+    "cli"
+  ],
+  "license": "MIT"
+}
