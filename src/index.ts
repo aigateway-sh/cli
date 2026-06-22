@@ -8,17 +8,24 @@ import { subAccountCommand } from "./commands/sub-account.js";
 import { tailCommand } from "./commands/tail.js";
 import { jobsCommand } from "./commands/jobs.js";
 import { mcpCommand } from "./commands/mcp.js";
+import { loginCommand } from "./commands/login.js";
+import { migrateCommand } from "./commands/migrate.js";
+import { skillCommand } from "./commands/skill.js";
 
 const HELP = `AIgateway CLI — one API, every model.
 
 Usage: aig <command> [options]
 
 Commands:
-  init                    Sign in, save a key, drop it in .env, scaffold starter code
+  init                    Save a key, drop it in .env, scaffold starter code
+  login                   Sign in via the browser (device auth)
   call <model> <prompt>   One-shot chat call (streams to stdout)
   models [--modality ..]  Print the live model catalog
   jobs video|music|3d …   Submit async generation jobs; get / cancel by id
   mcp tools|call …        Inspect the MCP server or invoke a tool from the shell
+  mcp install|config …    Wire the MCP server into Claude Code / Cursor / Windsurf / Cline
+  skill install           Install the AIgateway agent skill into your harness
+  migrate <source> [path] Rewrite OpenRouter / Portkey / Helicone config to AIgateway
   usage [--by tag|sub]    Month-to-date cost attribution
   replay <request-id> <model>   Re-run a past request on a new model
   eval run <dataset> <models>   Run an eval across candidate models
@@ -43,8 +50,14 @@ export async function run(argv: string[]): Promise<void> {
   switch (cmd) {
     case "init":
       return initCommand(rest);
+    case "login":
+      return loginCommand();
     case "call":
       return callCommand(rest);
+    case "migrate":
+      return migrateCommand(rest);
+    case "skill":
+      return skillCommand(rest);
     case "models":
       return modelsCommand(rest);
     case "usage":
